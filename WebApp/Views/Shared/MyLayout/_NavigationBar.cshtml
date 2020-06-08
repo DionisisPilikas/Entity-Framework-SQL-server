@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="bg-light">
+
+    <!--NAVBAR-->
+    <div class="container-fluid">
+        <div class="table">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand logoAnchor" href="/Home">SCHOOl</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a id="AllStudents" class="nav-link" href="/Students/AllStudents">All Students<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a id="AllCoursesr" class="nav-link" href="/Trainers/AllTrainers">All Trainers<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a id="AllTrainers" class="nav-link" href="/Courses/AllCourses">All Courses<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a id="AllAssignments" class="nav-link" href="/Assignments/AllAssignments">All Assignments<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a id="AllMarks" class="nav-link" href="/Marks/AllMarksPerAssignmentPerStudent">All Marks Per Assignment Per Student<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a id="AllStats" class="nav-link" href="/Stats/AllStats">All Stats<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a id="StudentsPerCourse" class="nav-link" href="/StudentCourseAssignment/StudentsPerCourse">Students Per Course<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a id="TrainersPerCourse" class="nav-link" href="/CourseTrainer/CourseTrainers">Trainers Per Course<span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+   </div>
+</body>
+
+
+</html>

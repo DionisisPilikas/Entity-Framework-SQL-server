@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Entities.Assignment>
+
+@{
+    ViewBag.Title = "Assignments";
+}
+
+    <h2 class="text-center">All Assignments</h2>
+<div class="text-center">
+    @Html.ActionLink("Create new Assignment", "Create", "Assignments", null, new { @class = "btn btn-outline-success" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>SSubmission Date</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var assignment in Model)
+        {
+        <tr>
+            <td> @Html.DisplayFor(x => assignment.Description)</td>
+            <td>@Html.DisplayFor(x => assignment.SubmissionDate, "{0:dd/MM/yyyy}", null) </td>
+            <td class="text-center">
+                @Html.ActionLink("Details", "Details", "Assignments", new { id = assignment.AssignmentId }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Edit", "Edit", "Assignments", new { id = assignment.AssignmentId }, new { @class = "btn btn-outline-primary" })
+                @Html.ActionLink("Delete", "Delete", "Assignments", new { id = assignment.AssignmentId }, new { @class = "btn btn-outline-danger" })
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

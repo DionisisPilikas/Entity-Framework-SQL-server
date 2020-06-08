@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Entities.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2 class="text-center">All Courses</h2>
+<div class="text-center">
+    @Html.ActionLink("Create new Course", "Create", "Courses", null, new { @class = "btn btn-outline-success" })
+</div>
+
+<div>
+    @using (Html.BeginForm("AllCourses", "Courses", FormMethod.Get))
+    {
+        @Html.DropDownList("SelectStudentLastName", "Choose Student")
+        <input type="submit" id="search" value="Search By Student" />
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Stream</th>
+            <th>Course Type</th>
+            <th>Start Date</th>
+            <th>End date</th>
+            <th>TuitionFees</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                 <td> @Html.DisplayFor(x => course.Title)</td>
+                 <td> @Html.DisplayFor(x => course.Stream)</td>
+                 <td>@Html.DisplayFor(x => course.CourseType) </td>
+                 <td>@Html.DisplayFor(x => course.StartDate, "{0:dd/MM/yyyy}", null) </td>
+                 <td>@Html.DisplayFor(x => course.EndDate, "{0:dd/MM/yyyy}", null) </td>
+                  <td>@Html.DisplayFor(x => course.TuitionFees) </td>
+                  <td class="text-center">
+                            @Html.ActionLink("Details", "Details", "Courses", new { id = course.CourseId }, new { @class = "btn btn-outline-success" })
+                            @Html.ActionLink("Edit", "Edit", "Courses", new { id = course.CourseId }, new { @class = "btn btn-outline-primary" })
+                            @Html.ActionLink("Delete", "Delete", "Courses", new { id = course.CourseId }, new { @class = "btn btn-outline-danger" })
+                  </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

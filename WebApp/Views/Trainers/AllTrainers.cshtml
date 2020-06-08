@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Entities.Trainer>
+
+@{
+    ViewBag.Title = "AllTrainers";
+}
+
+<h2 class="text-center">AllTrainers</h2>
+<div class="text-center">
+    @Html.ActionLink("Create new Trainer", "Create", "Trainers", null, new { @class = "btn btn-outline-success" })
+</div>
+
+<div>
+    @using (Html.BeginForm("AllTrainers", "Trainers", FormMethod.Get))
+    {
+        <label for="SelectCoursesIds">byCourse</label>
+        @Html.DropDownList("SelectCoursesId", "Choose Course")
+        <input type="submit" value="Search By Course" />
+    }
+</div>
+
+<table class="table">
+<thead>
+    <tr>
+        <th>Image</th>
+        <th>Video</th>
+        @*Object Route Value*@  @*Object html Attribute*@
+        <th>
+            @Html.ActionLink("First Name", "AllTrainers", "Trainers", new  { sortOrder = ViewBag.FirstNameSortParameter}, new{})
+        </th>
+        <th>
+            @Html.ActionLink("Last Name", "AllTrainers", "Trainers", new { sortOrder = ViewBag.LastNameSortParameter }, new { @class = ViewBag.LNView })
+        </th>
+        <th>Subject</th>
+        <th>e-mail</th>
+        <th class="text-center">Action</th>
+    </tr>
+    </thead>
+<tbody>
+    @foreach (var trainer in Model)
+                    {
+    <tr>
+        <td><img class="img-fluid" src="@Url.Content(trainer.PhotoUrl)" alt="Image" height="20" width="60" /> </td>
+        <td>@Html.DisplayFor(x => trainer.VideoUrl)</td>
+        <td> @Html.DisplayFor(x => trainer.FirstName)</td>
+        <td>@Html.DisplayFor(x => trainer.LastName) </td>
+        <td>@Html.DisplayFor(x => trainer.Subject)</td>
+        <td>@Html.DisplayFor(x => trainer.Email) </td>
+        <td class="text-center">
+            @Html.ActionLink("Details", "Details", "Trainers", new { id = trainer.TrainerId }, new { @class = "btn btn-outline-success" })
+            @Html.ActionLink("Edit", "Edit", "Trainers", new { id = trainer.TrainerId }, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Delete", "Delete", "Trainers", new { id = trainer.TrainerId }, new { @class = "btn btn-outline-danger" })
+        </td>
+
+    </tr>
+                    }
+</tbody>
+    </table>

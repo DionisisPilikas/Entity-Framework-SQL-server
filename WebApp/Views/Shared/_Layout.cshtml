@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My Scool Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body class="bg-light">
+    <div class="container-fluid">
+        <div>
+            @*Navigation Bar*@
+            @RenderPage("MyLayout/_NavigationBar.cshtml")
+
+        </div>
+
+        <div class="row">
+            <div class="col-9">
+                @*Main Context*@
+                @RenderBody()
+
+            </div>
+
+            <div class="col-3">
+                @*Secondary section (Right)*@
+                @RenderPage("MyLayout/_SecondaryRight.cshtml")
+            </div>
+        </div>
+
+        <div>
+            @*Footer*@
+            @RenderPage("MyLayout/_Footer.cshtml")
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        </div>
+
+</body>
+</html>

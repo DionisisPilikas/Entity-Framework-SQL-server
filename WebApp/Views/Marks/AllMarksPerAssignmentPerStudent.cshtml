@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Entities.Mark>
+
+@{
+    ViewBag.Title = "All Marks";
+}
+
+<h2>All Marks Per Student Per Assignment</h2>
+<div class="text-center">
+<p>
+    @Html.ActionLink("Create new Mark", "Create", "Marks", null, new { @class = "btn btn-outline-success" })
+</p>
+    </div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MarkValue)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Assignment.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Student.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Student.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MarkValue)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id1 = item.AssignmentId, id2 = item.StudentId }, new { @class = "btn btn-success" } ) |
+        @Html.ActionLink("Details", "Details", new { id1 = item.AssignmentId, id2 = item.StudentId }, new { @class = "btn btn-primary" } ) |
+        @Html.ActionLink("Delete", "Delete", new { id1 = item.AssignmentId, id2 = item.StudentId },new{ @class = "btn btn-danger"})
+    </td>
+</tr>
+}
+
+</table>

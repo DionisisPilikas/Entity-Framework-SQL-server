@@ -1,0 +1,59 @@
+﻿@model Entities.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="text-center">
+    <h2>Student Details</h2>
+    </div>
+
+    <div class="text-center">
+        <h4>Student</h4>
+        <hr />
+        <dl class="text-center">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhotoUrl)
+            </dt>
+
+            <dd>
+                <img src="@Url.Content(Model.PhotoUrl)" alt="Image" height="120" width="80" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+        </dl>
+    </div>
+    <p class="text-center">
+        @Html.ActionLink("Edit", "Edit", "Students", new { Id = Model.StudentId }, new { @class = "btn btn-outline-success" })
+        @Html.ActionLink("Back to list", "AllStudents", "Students", null, new { @class = "btn btn-outline-info" })
+    </p>

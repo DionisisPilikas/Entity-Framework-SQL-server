@@ -1,0 +1,96 @@
+﻿@*@model IEnumerable<Entities.Student>*@
+@model PagedList.IPagedList<Entities.Student>
+@using PagedList;
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Students";
+}
+
+@{ //ftiaxnw mia lista apo SelectListItems (apo select antikeimena)
+    SelectListItem a1 = new SelectListItem() { Text = "1", Value = "1" };
+    SelectListItem a2 = new SelectListItem() { Text = "2", Value = "2" };
+    SelectListItem a3 = new SelectListItem() { Text = "3", Value = "3" };
+    SelectListItem a4 = new SelectListItem() { Text = "4", Value = "4" };
+    SelectListItem a5 = new SelectListItem() { Text = "5", Value = "5" };
+    List<SelectListItem> items = new List<SelectListItem>() { a1, a2, a3, a4, a5 };
+}
+
+<h2 class="text-center">AllStudents</h2>
+
+
+@*Pagination*@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, x => @Url.Action("AllStudents", "Students", new { page = x, sortOrder = ViewBag.CurrentSortOrder, searchByFirstname = ViewBag.CurrentFirstName, searchByLastname = ViewBag.CurrentLastName,pSize=ViewBag.CurrentpSize }))
+
+
+
+
+
+@using (Html.BeginForm("AllStudents", "Students", FormMethod.Get))
+{
+    //2 tex Box
+    @Html.TextBox("searchByFirstname", null, new { placeholder = "Search FirstName" })
+    @Html.TextBox("searchByLastname", null, new { placeholder = "Search LastName" })
+
+    //apothikevw to CurrentSortOrder
+    string str = ViewBag.CurrentSortOrder;
+    @Html.TextBox("sortOrder", str, new { type = "hidden" })
+
+    @Html.DropDownList("pSize", items)
+
+    <input type="submit" value="Search for number of rows" />
+}
+    <div class="text-center">
+    @Html.ActionLink("Create new Student", "Create", "Students", null, new { @class = "btn btn-outline-success" })
+
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th> @*Object Route Value*@  @*Object html Attribute*@
+                <th> @Html.ActionLink("First Name", "AllStudents", "Students", new { sortOrder = ViewBag.FirstNameSortParameter, searchByFirstname = ViewBag.CurrentFirstName, searchByLastname = ViewBag.CurrentLastName, pSize = ViewBag.CurrentpSize }, new { @class = ViewBag.FNView })</th>
+                <th> @Html.ActionLink("Last Name", "AllStudents", "Students", new { sortOrder = ViewBag.LastNameSortParameter, searchByFirstname = ViewBag.CurrentFirstName, searchByLastname = ViewBag.CurrentLastName, pSize = ViewBag.CurrentpSize }, new { @class = ViewBag.LNView })</th>
+                <th>Date of Birth</th>
+                <th>e-mail</th>
+                <th>Age</th>
+                <th class="text-center">Courses</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+            <tr>
+                <td><img class="img-fluid" src="@Url.Content(student.PhotoUrl)" alt="Image" height="20" width="60" /> </td>
+                <td> @Html.DisplayFor(x => student.FirstName)</td>
+                <td>@Html.DisplayFor(x => student.LastName) </td>
+                <td>@Html.DisplayFor(x => student.DateOfBirth, "{0:dd/MM/yyyy}", null) </td>
+                <td>@Html.DisplayFor(x => student.Email) </td>
+                <td>@Html.DisplayFor(x => student.Age) </td>
+                <td>
+                    <ol>
+
+                        @foreach (var course in student.Courses)
+                        {
+                            <li>
+                                @Html.DisplayFor(x => course.Title)
+                                @Html.DisplayFor(x => course.Stream)
+                            </li>
+                        }
+
+                    </ol>
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Details", "Details", "Students", new { id = student.StudentId }, new { @class = "btn btn-outline-success" })
+                    @Html.ActionLink("Edit", "Edit", "Students", new { id = student.StudentId }, new { @class = "btn btn-outline-primary" })
+                    @Html.ActionLink("Delete", "Delete", "Students", new { id = student.StudentId }, new { @class = "btn btn-outline-danger" })<br />
+                </td>
+
+
+            </tr>
+            }
+        </tbody>
+    </table>

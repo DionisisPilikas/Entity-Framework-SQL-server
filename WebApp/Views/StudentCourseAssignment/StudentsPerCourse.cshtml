@@ -1,0 +1,71 @@
+﻿@model WebApp.Models.StudentCourseAssignment
+@{
+    ViewBag.Title = "StudentsPerCourse";
+}
+
+<h2>StudentsPerCourse</h2>
+
+<p>
+    Students that participate in Course and their Courses
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th >Courses</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => student.FirstName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(x => student.LastName)
+                </td>
+                       
+                <td>
+                    <ol>
+                @foreach (var course in student.Courses)
+                {
+                    
+                    
+                        <li>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+          
+                                        <th>Stream</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                            @Html.DisplayFor(x => course.Title)
+                                        </td>
+
+                                        <td>
+                            @Html.DisplayFor(x => course.Stream)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </li>
+                      
+                    
+                }
+                        </ol>
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</p>
+

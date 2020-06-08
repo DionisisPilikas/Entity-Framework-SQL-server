@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<Entities.FrontPhoto>
+@{
+    ViewBag.Title = "Home Page";
+}
+@*<img class="mx-auto d-block" src="/Content/Images/welcome-to-school-page-banner.jpg" alt="pali" height="400" width="700">*@
+
+
+
+<body>
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    @*<h1>@Model.FirstOrDefault(x => x.id == 1).name</h1>*@
+                    <img src="@Model.FirstOrDefault(x=>x.id==1).imgurl" class="d-block w-100" alt="..." ">
+                </div>
+                <div class="carousel-item">
+                    @*<h1>@Model.FirstOrDefault(x => x.id == 2).name</h1>*@
+                    <img src="@Model.FirstOrDefault(x=>x.id==2).imgurl" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    @*<h1>@Model.FirstOrDefault(x => x.id == 3).name</h1>*@
+                    <img src="@Model.FirstOrDefault(x=>x.id==3).imgurl" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</body>

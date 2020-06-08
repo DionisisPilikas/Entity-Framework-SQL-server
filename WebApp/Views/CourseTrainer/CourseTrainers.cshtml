@@ -1,0 +1,50 @@
+﻿@model WebApp.Models.CourseTrainers
+@{
+    ViewBag.Title = "TrainersPerCourse";
+}
+
+<h2>TrainersPerCourse</h2>
+
+<p>
+    Trainers that teaching in Courses
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Subject</th>
+                <th>Title</th>
+                <th>Stream</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var trainer in Model.Trainers)
+            {
+                foreach (var course in trainer.Courses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(x=>trainer.FirstName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(x => trainer.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => trainer.Subject)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(x => course.Title)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(x => course.Stream)
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</p>
